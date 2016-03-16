@@ -1,5 +1,6 @@
 .DS_Store
 .idea
+.c9
 node_modules
 bower_components
 releases

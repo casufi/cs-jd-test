@@ -2,12 +2,11 @@ app.controller 'UsersCtrl', ($scope, GithubFactory) ->
   console.log(GithubFactory.getGithubUsersСached())
   undefined
   users = GithubFactory.getGithubUsersСached()
-
   users
-  .resolve (data) ->
+  .then (data) ->
     $scope.users = data
     undefined
-  .reject (err) ->
+  , (err) ->
     $scope.errmsg = err
     undefined
   undefined

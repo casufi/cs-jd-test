@@ -7,27 +7,29 @@ app.factory 'GithubFactory', ($http, $q) ->
   @getGitHubApiPath = -> githubapipath
 
   @getGithubUsersСached = ->
-    deffer = $q.defer();
-    if githubusers && githubusers.length
-      deffer.resolve(githubusers)
-    else
+    $q (resolve, reject) ->
+      if githubusers && githubusers.length
+        resolve(githubusers)
+      else
+        $http.get(githubapipath+'/users')
+        .then (data) ->
+          console.log(data)
+          githubusers = data
+          resolve(data)
+        , (err)->
+          reject(err)
+
+  return this
 ###
-      $http.get(githubapipath+'/users')
-      .then (data) ->
-        console.log(data)
-        githubusers = data
-        deffer.resolve(data)
-      , (err)->
-        deffer.reject(err)
-###
-    deffer
+      else
+
 
   @getGithubUserСached = (username) ->
     deffer = $q.defer();
     for _githubuser in githubusers
       if  _githubuser.login == username
         githubuser = _githubuser
-###
+
     if githubuser && githubuser.full
       deffer.resolve(githubuser)
     else
@@ -43,7 +45,4 @@ app.factory 'GithubFactory', ($http, $q) ->
       , (err) ->
         deffer.reject(err)
 ###
-    deffer
 
-
-  return this

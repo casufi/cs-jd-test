@@ -1,4 +1,5 @@
-app.run ($rootScope, PageFactory, apiHost) ->
+app.run ($rootScope, PageFactory, GithubFactory, apiHost, gitHubApiHost) ->
+  GithubFactory.setGitHubApi(gitHubApiHost)
   $rootScope.Page = PageFactory
 
   console.log 'Connected to api host: ' + apiHost

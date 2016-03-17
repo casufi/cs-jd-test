@@ -1,3 +1,5 @@
 {
-  "apiHost": "https://api.local.com/"
+  "apiHost": "https://api.local.com/",
+  "gitHubApiHost": "https://api.github.com",
+  "gitHubApiHostDoc": "https://developer.github.com/v3/"
 }

@@ -5,10 +5,10 @@ html(ng-app="myApp")
     title(ng-bind="Page.getTitle()")
 
     meta(charset="utf-8")
-    meta(name="fragment" content="!")    
+    meta(name="fragment" content="!")
     meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0")
     // Have to read about fragment  anf viewport tags
-      
+
     // build:css styles/main.css
     // bower:css
     link(rel='stylesheet', href='/bower_components/normalize.css/normalize.css')
@@ -27,6 +27,7 @@ html(ng-app="myApp")
     script(src='/bower_components/angular-resource/angular-resource.js')
     script(src='/bower_components/angular-cookies/angular-cookies.js')
     script(src='/bower_components/angular-route/angular-route.js')
+    script(src='/bower_components/angular-animate/angular-animate.js')
     // endbower
 
     script(src='/scripts/app.js')
@@ -40,5 +41,5 @@ html(ng-app="myApp")
     script(src='/scripts/factories/github.js')
 
     script(src='/scripts/controllers/global.js')
-    script(src='/scripts/controllers/home.js')
+    script(src='/scripts/controllers/users.js')
     // endbuild

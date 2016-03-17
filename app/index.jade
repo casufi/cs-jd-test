@@ -19,7 +19,7 @@ html(ng-app="myApp")
     // endbuild
 
   body(ng-controller="GlobalCtrl")
-    div#wrapper(ng-view)
+    div.center.fadein-animation(ng-view)
 
     // build:js scripts/main.js
     // bower:js
@@ -36,10 +36,11 @@ html(ng-app="myApp")
     script(src='/scripts/configs/http.js')
     script(src='/scripts/configs/routes.js')
     script(src='/scripts/configs/run.js')
-
+    script(src='/scripts/directives/imgonload.js')
     script(src='/scripts/factories/page.js')
     script(src='/scripts/factories/github.js')
 
     script(src='/scripts/controllers/global.js')
     script(src='/scripts/controllers/users.js')
+    script(src='/scripts/controllers/user.js')
     // endbuild

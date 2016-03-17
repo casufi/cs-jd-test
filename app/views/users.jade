@@ -1,9 +1,14 @@
-#home
-  .welcome
-    h1 'Allo, 'Allo!
-    p Kick-start your next web app with&nbsp;
-      a(href="https://github.com/nevech/generator-genlys" target="_blank") Genlys
-  .logo
-    img(src="/images/logo.png")
-  .getting-started
-    a(href="https://github.com/nevech/generator-genlys/blob/master/docs/README.md" target="_blank") Getting Started
+section.users
+  header
+    h1 Github view
+    h2 Github users
+  section.userlabels
+    ul.lablesshowcase
+      li(ng-repeat="user in users")
+        a(ng-if="user.userdata", href="#/user/{{user.login}}")
+          figure
+            div.left.round.avatar-container
+              img(ng-src="{{user.avatar_url}}", image-onload="setImgLoaded(user)", alt="{{user.login}}")
+            div.right.login-container
+              div.login-text(ng-if="user.userdata")
+                "{{user.login}}"

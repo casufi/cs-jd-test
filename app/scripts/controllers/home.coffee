@@ -1,1 +1,2 @@
-app.controller 'HomeCtrl', ($scope) ->
+app.controller 'HomeCtrl', ($scope, GithubFactory) ->
+  $scope.githubusers = GithubFactory.getGithubUsersСached()

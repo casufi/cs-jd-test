@@ -1,1 +1,7 @@
-#home
+section.user
+  h1
+    a(href="/#/") Github view
+  section.fullavatar
+    img.fullavatar-img(ng-if="userctl.user.avatar_url", ng-src="{{userctl.user.avatar_url}}")
+    img.fullavatar-img(ng-if="!userctl.user.avatar_url", ng-src="/img/anonymous.png")
+

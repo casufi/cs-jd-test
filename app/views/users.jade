@@ -4,11 +4,10 @@ section.users
     h2 Github users
   section.userlabels
     ul.lablesshowcase
-      li(ng-repeat="user in users")
-        a(ng-if="user.userdata", href="#/user/{{user.login}}")
+      li(ng-repeat="user in usersctl.users")
+        a(ng-href="user/{{user.login}}")
           figure
             div.left.round.avatar-container
-              img(ng-src="{{user.avatar_url}}", image-onload="setImgLoaded(user)", alt="{{user.login}}")
+              img(ng-src="{{user.avatar_url}}", alt="{{user.login}}")
             div.right.login-container
-              div.login-text(ng-if="user.userdata")
-                "{{user.login}}"
+              div.login-text {{user.login}}

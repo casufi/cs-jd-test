@@ -1,12 +1,13 @@
 app.controller 'UsersCtrl', ($scope, GithubFactory) ->
-  console.log(GithubFactory.getGithubUsersСached())
-  undefined
-  users = GithubFactory.getGithubUsersСached()
-  users
-  .then (data) ->
-    $scope.users = data
+  users_ = GithubFactory.getGithubUsersСached()
+  @users =[]
+  console.log({"gfusers promise":users_})
+  users_
+  .then (data) =>
+    @users = data
+    console.log({"scp users":$scope.users})
     undefined
   , (err) ->
-    $scope.errmsg = err
+    @errmsg = err
     undefined
-  undefined
+  return this

@@ -1,5 +1,13 @@
 app.controller 'UserCtrl', ($scope, $routeParams, GithubFactory) ->
   username = $routeParams.userName
-  $scope.githubuser = GithubFactory.getGithubUserСached(username)
-  .success (data)-> $scope.user = data
-  .error (err) -> $scope.errmsg = err
+  user_ = GithubFactory.getGithubUserCached(username)
+  console.log({"gfuser promise":user_})
+  user_
+  .then (data) =>
+    @user = data
+    console.log({"scp user":@user})
+    undefined
+  , (err) ->
+    @errmsg = err
+    undefined
+  return this

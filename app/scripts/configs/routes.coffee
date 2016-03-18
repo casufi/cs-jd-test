@@ -7,6 +7,10 @@ app.config ($routeProvider) ->
     .when '/user/:userName',
       templateUrl: 'views/user.html',
       controller: 'UserCtrl as userctl',
-      title: 'Users'
+      title: 'User'
+    .when '/repo/:repoId',
+      templateUrl: 'views/repo.html',
+      controller: 'RepoCtrl as repoctl',
+      title: 'Repo'
     .otherwise
       redirectTo: '/'

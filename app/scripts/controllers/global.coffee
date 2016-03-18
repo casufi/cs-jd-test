@@ -1,1 +1,2 @@
-app.controller 'GlobalCtrl', ($scope) ->
+app.controller 'GlobalCtrl',  ->
+  return this

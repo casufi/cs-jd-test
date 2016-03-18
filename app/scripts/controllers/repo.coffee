@@ -1,3 +1,3 @@
-app.controller 'ReposCtrl', ($scope, $routeParams, GithubFactory) ->
+app.controller 'RepoCtrl', ($routeParams, GithubFactory) ->
   repoid = $routeParams.repoId
   return this

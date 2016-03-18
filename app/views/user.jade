@@ -1,7 +1,26 @@
 section.user
   h1
     a(href="/#/") Github view
-  section.fullavatar
+  div.fullavatar
     img.fullavatar-img(ng-if="userctl.user.avatar_url", ng-src="{{userctl.user.avatar_url}}")
     img.fullavatar-img(ng-if="!userctl.user.avatar_url", ng-src="/img/anonymous.png")
+  section.userinfo
+    h2 Github user {{userctl.user.login}}
+    span.block Fullname: {{userctl.user.name}}
+    span.block E-mail: {{userctl.user.email}}
+  section.repos
+    h2 Repositories:
+    table(ng-if="userctl.user.repos")
+      tr
+        th Name
+        th Author
+        th Id
+        th Description
+      tr(ng-repeat="repo in userctl.user.repos")
+        td(ng-if="!repo.commits_url") {{repo.full_name}}
+        td(ng-if="repo.commits_url")
+          a(ng-href="/#/repo/{{repo.name}}") {{repo.full_name}}
+        td {{repo.owner.login}}
+        td {{repo.id}}
+        td {{repo.description}}
 

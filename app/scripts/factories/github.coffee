@@ -9,7 +9,7 @@ app.factory 'GithubFactory', ($http, $q) ->
 
   @getGithubUsersСached = ->
     $q (resolve, reject) ->
-      if githubusers && githubusers.length
+      if githubusers && githubusers.length > 1
         resolve(githubusers)
       else
         $http.get(githubapipath+'/users')
@@ -30,21 +30,17 @@ app.factory 'GithubFactory', ($http, $q) ->
 
     $q (resolve, reject) =>
       if @githubuser && @githubuser.full
-        console.log("ghu cached":@githubuser)
         resolve(@githubuser)
       else
         userget = $http.get(githubapipath+'/users/'+username)
         userget
         .then (response) =>
           if response.data && response.data.login
-            console.log("fbd user":response.data)
             if @githubuser
               @githubuser = response.data
-              console.log({"1ghusers":githubusers})
             else
               githubusers.push(response.data)
               @githubuser = response.data
-              console.log({"2ghusers":githubusers})
           else
             reject("can`t get user info")
           userget
@@ -53,7 +49,6 @@ app.factory 'GithubFactory', ($http, $q) ->
         .then (response) =>
           if response && response.data && response.data.repos_url
             @userdata = response.data
-#TODO: Ask if it is better to use  repos_url in this case or url from API ?
             reposget = $http.get(@userdata.repos_url)
             reposget
             .then (response) =>
@@ -62,6 +57,27 @@ app.factory 'GithubFactory', ($http, $q) ->
               @userdata.full = 1
               resolve(@userdata)
 
-  @getGithubUserRepoCached = (username) ->
+  @getGithubUserRepoCached = (username, reponame) ->
+    # Выше пробовал использовать =>
+    # Тут присвоил this переменной и все свойства присваиваю этой переменной, по мне так прозрачней
+    self = this
 
+    $q (resolve, reject) ->
+      repoget = $http.get(githubapipath+'/repos/'+username+'/'+reponame)
+      repoget
+      .then (response) ->
+        if response.data && response.data.commits_url
+          self.repo = response.data
+      ,(err) ->
+        reject(err)
+      .then ->
+          if self.repo && self.repo.commits_url
+            commitsget = $http.get(githubapipath+'/repos/'+username+'/'+reponame+'/commits')
+            commitsget
+            .then (response) ->
+              # Я проверяю действительно ли мне отдали массив коммитов
+              # Посоветоваться целесообразнали такая проверка
+              if response && response.data && response.data[0] && response.data[0].sha
+                self.repo.commits = response.data
+              resolve(self.repo)
   return this

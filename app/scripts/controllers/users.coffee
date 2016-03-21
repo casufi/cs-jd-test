@@ -9,7 +9,6 @@ app.controller 'UsersCtrl', (GithubFactory) ->
   .then (data) =>
     #if we get Array with the element.login property so we can use it
     #otherwise this is not users array
-    console.log({"users":data})
     if data[0] and data[0].login
       @users = data
     undefined

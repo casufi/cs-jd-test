@@ -1,7 +1,7 @@
 section.user
   div.fullavatar
     img.fullavatar-img(ng-if="userctl.user.avatar_url", ng-src="{{userctl.user.avatar_url}}")
-    img.fullavatar-img(ng-if="!userctl.user.avatar_url", ng-src="/img/anonymous.png")
+    img.fullavatar-img(ng-if="!userctl.user.avatar_url", ng-src="/images/anonymous.png")
   section.userinfo
     h2 Github user {{userctl.user.login}}
     span.block Fullname: {{userctl.user.name}}
@@ -19,7 +19,7 @@ section.user
         td {{repo.owner.login}}
         td(ng-if="!repo.commits_url") {{repo.full_name}}
         td(ng-if="repo.commits_url")
-          a(ng-href="/#/repo/{{repo.name}}") {{repo.name}}
+          a(ng-href="/#/repo/{{repo.owner.login}}/{{repo.name}}") {{repo.name}}
         td.hide-middle {{repo.description}}
       tr.show-middle(ng-repeat-end)
         td(colspan=3) {{repo.description}}

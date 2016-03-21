@@ -11,10 +11,10 @@ app.config ($routeProvider) ->
       controller: 'UserCtrl as userctl',
       title: 'Github view',
       header: 'User page',
-    .when '/repo/:repoId',
+    .when '/repo/:repoOwner/:repoName',
       templateUrl: 'views/repo.html',
       controller: 'RepoCtrl as repoctl',
       title: 'Github view',
-      header: 'Repos page',
+      header: 'Repository page',
     .otherwise
       redirectTo: '/'

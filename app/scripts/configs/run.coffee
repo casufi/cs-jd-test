@@ -7,3 +7,6 @@ app.run ($rootScope, PageFactory, GithubFactory, apiHost, gitHubApiHost) ->
   $rootScope.$on '$routeChangeSuccess', (e, nextRoute) ->
     if nextRoute.title
       PageFactory.setTitle(nextRoute.title)
+
+    if nextRoute.header
+      PageFactory.setHeader(nextRoute.header)

@@ -18,8 +18,12 @@ html(ng-app="myApp")
     link(rel="stylesheet", href="/styles/users.css")
     // endbuild
 
-  body(ng-controller="GlobalCtrl")
-    div.center.fadein-animation(ng-view)
+  //(ng-controller="GlobalCtrl")
+  body
+    div.center
+      h1(ng-bind="Page.getHeader()")
+      h2(ng-if="Page.getMain()") Hello World
+      div.place.fadein-animation(ng-view)
 
     // build:js scripts/main.js
     // bower:js

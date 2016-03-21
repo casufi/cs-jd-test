@@ -4,6 +4,7 @@ app.config ($routeProvider) ->
       templateUrl: 'views/users.html'
       controller: 'UsersCtrl as usersctl'
       title: 'Welcome'
+      header: 'Welcome'
     .when '/user/:userName',
       templateUrl: 'views/user.html',
       controller: 'UserCtrl as userctl',

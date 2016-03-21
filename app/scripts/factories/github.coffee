@@ -3,7 +3,7 @@ app.factory 'GithubFactory', ($http, $q) ->
   githubusers = []
 
   @setGitHubApi = (githubapipath_) -> githubapipath = githubapipath_
-  @setGitHubApi = ->
+  #@setGitHubApi = ->
 
   @getGitHubApiPath = -> githubapipath
 

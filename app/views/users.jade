@@ -1,12 +1,14 @@
 section.users
   header
-    h2 Github users
   section.userlabels
     ul.lablesshowcase
-      li(ng-repeat="user in usersctl.users")
+      li(ng-repeat="user in usersctl.users track by user.id")
         a(ng-href="user/{{user.login}}")
-          figure
+          figure(ng-class="(user.imgloaded)?'imgloaded':'imgnotloaded'")
             div.left.round.avatar-container
-              img(ng-src="{{user.avatar_url}}", alt="{{user.login}}")
+              img(ng-src="{{user.avatar_url}}", image-onload="usersctl.setImgLoaded(user)", alt="{{user.login}}")
             div.right.login-container
               div.login-text {{user.login}}
+            div.email.clearfix
+              span(ng-if="user.full") {{user.userdata.email}}
+

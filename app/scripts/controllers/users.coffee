@@ -1,10 +1,15 @@
 app.controller 'UsersCtrl', (GithubFactory) ->
+
+  @setImgLoaded = (user) ->
+    user.imgloaded = 1
+
   users_ = GithubFactory.getGithubUsersСached()
   @users =[]
   users_
   .then (data) =>
-    #если вернули массив юзеров у которых есть логины тогда имеет смысл его возвращать,
-    #иначе нам вернули фигню
+    #if we get Array with the element.login property so we can use it
+    #otherwise this is not users array
+    console.log({"users":data})
     if data[0] and data[0].login
       @users = data
     undefined

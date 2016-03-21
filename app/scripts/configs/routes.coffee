@@ -3,15 +3,18 @@ app.config ($routeProvider) ->
     .when '/',
       templateUrl: 'views/users.html'
       controller: 'UsersCtrl as usersctl'
-      title: 'Welcome'
-      header: 'Welcome'
+      title: 'Github view'
+      header: 'Welcome',
+      main: 1
     .when '/user/:userName',
       templateUrl: 'views/user.html',
       controller: 'UserCtrl as userctl',
-      title: 'User'
+      title: 'Github view',
+      header: 'User page',
     .when '/repo/:repoId',
       templateUrl: 'views/repo.html',
       controller: 'RepoCtrl as repoctl',
-      title: 'Repo'
+      title: 'Github view',
+      header: 'Repos page',
     .otherwise
       redirectTo: '/'

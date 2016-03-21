@@ -1,19 +1,80 @@
-#home
-  a
-    text-decoration: none
-    color: #27ae60
-    font-weight: 200
+middle-screen = 850px
+small-screen = 490px
 
-  .welcome, .getting-started
-    text-align: center
-    font-weight: 400
-    font-size: 40px
+.fullavatar
+  float: left
+  width: 50%
+  min-width: 300px
+  @media screen and (max-width: middle-screen)
+    width: 425px;
+    float: none;
+  @media screen and (max-width: small-screen)
+    width: auto;
+    float: none;
+  img
+    width: 100%
+    height: auto
+    border-radius: 5px
 
-    p
-      font-size: 30px
+.userinfo
+  float: right
+  width: 50%
+  min-width:300px
+  padding: 20px
+  @media screen and (max-width: middle-screen)
+    width: auto
+    float: none
+  span
+    display: block
 
-  .getting-started
-    margin: 20px 0 0 0
+.repos
+.commits
+  h2
+    margin-top: 15px
+  table
+    width: 100%
+    tr
+      th
+        padding-left: 15px
+        padding-right: 15px
+        padding-top: 5px
+        padding-bottom: 5px
+        background-color: rgb(200,200,200)
+      td
+        padding-left: 15px
+        padding-right: 15px
+        padding-top: 3px
+        padding-bottom: 3px
+        border-bottom: 1px solid rgb(200,200,200)
 
-  .logo
-    text-align: center
+      th
+      td
+        @media screen and (max-width: small-screen)
+          padding-left: 5px
+          padding-right: 5px
+
+      th:first-child
+      td:first-child
+        @media screen and (max-width: small-screen)
+          padding-left: 0px
+
+      th:last-child
+      td:last-child
+        @media screen and (max-width: small-screen)
+          padding-right: 0px
+
+      th.hide-small
+      td.hide-small
+        @media screen and (max-width: small-screen)
+          display: none
+
+      th.hide-middle
+      td.hide-middle
+        @media screen and (max-width: middle-screen)
+          display: none
+
+    tr.show-middle
+      display: none
+      @media screen and (max-width: middle-screen)
+        display: table-row
+        background-color: rgb(240,240,240)

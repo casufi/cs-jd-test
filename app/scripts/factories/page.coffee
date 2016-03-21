@@ -10,6 +10,8 @@ app.factory 'PageFactory', ->
 
   @setHeader = (_header) -> header = _header
 
-  @getMain = -> 0
+  @getMain = => @ismain
+
+  @setMain = (_ismain) => @ismain = _ismain
 
   return this

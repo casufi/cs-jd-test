@@ -2,7 +2,7 @@ doctype html
 html(ng-app="myApp")
   head
     base(href="#{basePath}")
-    title(ng-bind="Page.getTitle()")
+    title(ng-bind="Page.getTitle()+'|'+Page.getHeader()")
 
     meta(charset="utf-8")
     meta(name="fragment" content="!")
@@ -16,13 +16,16 @@ html(ng-app="myApp")
     link(rel="stylesheet", href="/styles/fonts.css")
     link(rel="stylesheet", href="/styles/main.css")
     link(rel="stylesheet", href="/styles/users.css")
+    link(rel="stylesheet", href="/styles/user.css")
     // endbuild
 
   //(ng-controller="GlobalCtrl")
   body
     div.center
-      h1(ng-bind="Page.getHeader()")
-      h2(ng-if="Page.getMain()") Hello World
+      a(ng-if="!Page.getMain()", ng-href="/")
+        h1(ng-bind="Page.getTitle()")
+      h1(ng-if="Page.getMain()", ng-bind="Page.getTitle()")
+      h2(ng-bind="Page.getHeader()")
       div.place.fadein-animation(ng-view)
 
     // build:js scripts/main.js

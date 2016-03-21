@@ -1,75 +1,68 @@
-app.factory 'GithubFactory', ($http, $q) ->
-  githubapipath = ''
+app.factory 'GithubFactory', ($http, $q, gitHubApiHost) ->
+  githubapipath = gitHubApiHost
   githubusers = []
-
-  @setGitHubApi = (githubapipath_) -> githubapipath = githubapipath_
-  #@setGitHubApi = ->
 
   @getGitHubApiPath = -> githubapipath
 
   @getGithubUsersСached = ->
-    $q (resolve, reject) ->
+    return $q (resolve, reject) ->
       if githubusers && githubusers.length > 1
-        resolve(githubusers)
-      else
-        $http.get(githubapipath+'/users')
-        .then (response) ->
-          if response.data && response.data.length
-            githubusers = response.data
-            resolve(response.data)
-          else
-            reject("empty data")
-        , (err)->
-          reject(err)
+        return resolve(githubusers)
+
+      $http.get(githubapipath+'/users')
+      .then (response) ->
+        if response.data && response.data.length
+          githubusers = response.data
+          resolve(response.data)
+        else
+          reject("empty data")
+      , (err)->
+        reject(err)
 
   @getGithubUserCached = (username) ->
-
+    self = this
     for _githubuser in githubusers
       if  _githubuser.login == username
-        @githubuser = _githubuser
+        self.githubuser = _githubuser
 
-    $q (resolve, reject) =>
-      if @githubuser && @githubuser.full
-        resolve(@githubuser)
-      else
-        userget = $http.get(githubapipath+'/users/'+username)
-        userget
-        .then (response) =>
+    return $q (resolve, reject) ->
+      if self.githubuser && self.githubuser.full
+        resolve(self.githubuser)
+        return undefined
+
+      userget = $http.get(githubapipath+'/users/'+username)
+      userget
+        .then (response) ->
           if response.data && response.data.login
-            if @githubuser
-              @githubuser = response.data
+            if self.githubuser
+              self.githubuser = response.data
             else
               githubusers.push(response.data)
-              @githubuser = response.data
-          else
-            reject("can`t get user info")
-          userget
-        , (err) ->
-          reject(err)
-        .then (response) =>
+              self.githubuser = response.data
+            return userget
+          reject
+        , -> reject
+        .then (response) ->
           if response && response.data && response.data.repos_url
-            @userdata = response.data
-            reposget = $http.get(@userdata.repos_url)
+            userdata = response.data
+            reposget = $http.get(userdata.repos_url)
             reposget
-            .then (response) =>
-              if response.data && response.data.length
-                @userdata.repos = response.data
-              @userdata.full = 1
-              resolve(@userdata)
+              .then (response) ->
+                if response.data && response.data.length
+                  userdata.repos = response.data
+                userdata.full = 1
+                resolve(userdata)
 
   @getGithubUserRepoCached = (username, reponame) ->
-    # Выше пробовал использовать =>
-    # Тут присвоил this переменной и все свойства присваиваю этой переменной, по мне так прозрачней
     self = this
-
-    $q (resolve, reject) ->
+    return $q (resolve, reject) ->
       repoget = $http.get(githubapipath+'/repos/'+username+'/'+reponame)
       repoget
       .then (response) ->
         if response.data && response.data.commits_url
           self.repo = response.data
-      ,(err) ->
-        reject(err)
+        return repoget
+      , -> reject
       .then ->
           if self.repo && self.repo.commits_url
             commitsget = $http.get(githubapipath+'/repos/'+username+'/'+reponame+'/commits')

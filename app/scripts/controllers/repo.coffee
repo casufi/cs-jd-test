@@ -3,12 +3,11 @@ app.controller 'RepoCtrl', ($routeParams, GithubFactory) ->
   reponame = $routeParams.repoName
   repo_ = GithubFactory.getGithubUserRepoCached(repoowner, reponame)
   repo_
-  .then (data) =>
-    @repo = data
-    console.log({"repo":@repo})
-    undefined
-  , (err) ->
-    @errmsg = err
-    undefined
+    .then (data) =>
+      @repo = data
+      undefined
+    , (err) ->
+      @errmsg = err
+      undefined
   return this
 

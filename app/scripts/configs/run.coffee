@@ -1,6 +1,4 @@
-app.run ($rootScope, PageFactory, GithubFactory, gitHubApiHost) ->
-  GithubFactory.setGitHubApi(gitHubApiHost)
-  console.log 'Connected to api host: ' + gitHubApiHost
+app.run ($rootScope, PageFactory) ->
   $rootScope.Page = PageFactory
 
   # Set page title.

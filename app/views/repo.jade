@@ -2,11 +2,14 @@ section(ng-if="repoctl.repo.commits" class="commits")
   h3 {{repoctl.repo.full_name}} Commits:
   table
     tr
-      th Sha
       th Date
       th Author
+      th.hide-middle Sha
 
-    tr(ng-repeat="commit in repoctl.repo.commits")
-      td {{commit.sha}}
+    tr(ng-repeat-start="commit in repoctl.repo.commits track by commit.sha")
       td {{commit.commit.author.date|date:'yyyy-MM-dd HH:mm'}}
       td {{commit.commit.author.name}}
+      td.hide-middle {{commit.sha}}
+    tr.show-middle(ng-repeat-end)
+      td(colspan=2) {{commit.sha}}
+

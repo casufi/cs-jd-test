@@ -73,6 +73,12 @@ small-screen = 490px
         @media screen and (max-width: middle-screen)
           display: none
 
+    tr.show-small
+      display: none
+      @media screen and (max-width: small-screen)
+        display: table-row
+        background-color: rgb(240,240,240)
+
     tr.show-middle
       display: none
       @media screen and (max-width: middle-screen)

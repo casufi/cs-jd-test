@@ -1,6 +1,6 @@
-app.controller 'UserCtrl', ($routeParams, GithubFactory) ->
+app.controller 'UserCtrl', ($routeParams, GithubSvc) ->
   username = $routeParams.userName
-  user_ = GithubFactory.getGithubUserCached(username)
+  user_ = GithubSvc.getGithubUserCached(username)
   user_
   .then (data) =>
     @user = data

@@ -1,4 +1,4 @@
-section(ng-if="repoctl.repo.commits" class="commits")
+section(ng-show="repoctl.repo.commits" class="commits")
   h3 {{repoctl.repo.full_name}} Commits:
   table
     tr

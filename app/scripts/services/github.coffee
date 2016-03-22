@@ -75,5 +75,5 @@ app.service 'GithubSvc', ($resource, $http, $q, gitHubApiHost) ->
                   self.repo.commits = commits
                 resolve(self.repo)
                 return this
-
+              
   return undefined

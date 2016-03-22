@@ -1,9 +1,9 @@
-app.controller 'UsersCtrl', (GithubFactory) ->
+app.controller 'UsersCtrl', (GithubSvc) ->
 
   @setImgLoaded = (user) ->
     user.imgloaded = 1
 
-  users_ = GithubFactory.getGithubUsersСached()
+  users_ = GithubSvc.getGithubUsersСached()
   @users =[]
   users_
   .then (data) =>
